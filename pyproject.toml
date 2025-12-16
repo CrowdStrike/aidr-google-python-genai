@@ -1,0 +1,61 @@
+[project]
+name = "crowdstrike-aidr-google-genai"
+version = "0.0.0"
+description = "A wrapper around the Google GenAI Python SDK"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "CrowdStrike", email = "support@crowdstrike.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "crowdstrike-aidr ~=0.3.0",
+    "google-genai ~=1.54.0",
+    "typing-extensions ~=4.15.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy ==1.19.0",
+    "pytest ==9.0.2",
+    "pytest-asyncio ==1.3.0",
+    "ruff ==0.14.8",
+]
+
+[build-system]
+requires = ["uv_build==0.9.17"]
+build-backend = "uv_build"
+
+[tool.mypy]
+python_version = "3.12"
+pretty = true
+show_error_codes = true
+implicit_reexport = false
+cache_fine_grained = true
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",   # isort
+    "PTH", # flake8-use-pathlib
+    "SIM", # flake8-simplify
+    "TC",  # flake8-type-checking
+    "UP",  # pyupgrade
+]
+ignore = [
+    "TC001",
+    "TC002",
+    "TC003",
+
+    # Reduce the delta from upstream.
+    "E501",
+    "UP006",
+    "UP007",
+    "UP035",
+    "UP045",
+]
