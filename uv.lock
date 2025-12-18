@@ -124,7 +124,7 @@ wheels = [
 
 [[package]]
 name = "crowdstrike-aidr-google-genai"
-version = "0.0.0"
+version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "crowdstrike-aidr" },
