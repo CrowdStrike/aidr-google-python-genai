@@ -1,6 +1,6 @@
 [project]
 name = "crowdstrike-aidr-google-genai"
-version = "0.1.0"
+version = "0.1.1"
 description = "A wrapper around the Google GenAI Python SDK"
 readme = "README.md"
 license = "MIT"
