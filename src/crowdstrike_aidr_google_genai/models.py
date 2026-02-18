@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional, Union
+from typing import Optional, Union, cast
 
 from crowdstrike_aidr import AIGuard
 from google.genai import types
@@ -133,15 +133,14 @@ class CrowdStrikeAidrModels(Models):
 
         output_messages = [PangeaMessage(role="assistant", content=genai_response.text)]
 
-        # TODO: reintroduce.
         # FPE decryption.
-        # if guard_input_response.result.fpe_context is not None:
-        #     redact_response = self._redact_client.unredact(
-        #         output_messages,
-        #         fpe_context=guard_input_response.result.fpe_context,
-        #     )
-        #     assert redact_response.result is not None
-        #     output_messages = redact_response.result.data
+        if guard_input_response.result.fpe_context is not None:
+            redact_response = self._ai_guard_client.unredact(
+                redacted_data=output_messages,
+                fpe_context=guard_input_response.result.fpe_context,
+            )
+            assert redact_response.result is not None
+            output_messages = cast("list[PangeaMessage]", redact_response.result.data)
 
         guard_output_response = self._ai_guard_client.guard_chat_completions(
             # The LLM response must be contained within a single "assistant"
@@ -252,15 +251,14 @@ class AsyncCrowdStrikeAidrModels(AsyncModels):
 
         output_messages = [PangeaMessage(role="assistant", content=genai_response.text)]
 
-        # TODO: reintroduce.
         # FPE decryption.
-        # if guard_input_response.result.fpe_context is not None:
-        #     redact_response = await self._redact_client.unredact(
-        #         output_messages,
-        #         fpe_context=guard_input_response.result.fpe_context,
-        #     )
-        #     assert redact_response.result is not None
-        #     output_messages = redact_response.result.data
+        if guard_input_response.result.fpe_context is not None:
+            redact_response = self._ai_guard_client.unredact(
+                redacted_data=output_messages,
+                fpe_context=guard_input_response.result.fpe_context,
+            )
+            assert redact_response.result is not None
+            output_messages = cast("list[PangeaMessage]", redact_response.result.data)
 
         guard_output_response = self._ai_guard_client.guard_chat_completions(
             # The LLM response must be contained within a single "assistant"

@@ -5,10 +5,6 @@
   inputs,
   ...
 }: {
-  packages = with pkgs; [
-    git
-  ];
-  starship.enable = true;
   languages.python = {
     enable = true;
     version = "3.12";
@@ -20,5 +16,11 @@
         allGroups = true;
       };
     };
+  };
+
+  git-hooks.hooks = {
+    alejandra.enable = true;
+    ruff.enable = true;
+    ruff-format.enable = true;
   };
 }
