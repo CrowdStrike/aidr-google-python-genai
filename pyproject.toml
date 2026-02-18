@@ -9,7 +9,7 @@ authors = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-    "crowdstrike-aidr ~=0.4.2",
+    "crowdstrike-aidr ~=0.5.0",
     "google-genai ~=1.54.0",
     "typing-extensions ~=4.15.0",
 ]

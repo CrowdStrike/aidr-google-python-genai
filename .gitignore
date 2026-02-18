@@ -16,3 +16,6 @@ wheels/
 
 # Virtual environments
 .venv
+
+# pre-commit
+.pre-commit-config.yaml
