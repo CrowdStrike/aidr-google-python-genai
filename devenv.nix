@@ -7,7 +7,7 @@
 }: {
   languages.python = {
     enable = true;
-    version = "3.12";
+    version = "3.12.15";
     uv = {
       enable = true;
       sync = {
